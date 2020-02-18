@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <link rel="stylesheet" href="./css/styles.css">
+<script src="./js/bundle.js"></script>
+  </head>
+  <body>
+    <div id="app">
+      <h1> Exchange Calculator </h1>
+      <label for="curreny">Choose a currency</label>
+
+      <select id="value" v-model="selectedType">
+        <option value="to"> To</option>
+        <option  value="from"> From </option>
+
+      </select>
+
+   <select v-id="curreny" v-model="selectedRate">
+     <option v-for="(value, key) in exchanges"  v-bind:value="value" >{{key}}</option>
+     <option  value="1"> Euro </option>
+
+   </select>
+   <div v-if="selectedRate" >
+    <p> Rate is {{selectedRate}} </p>
+ </div>
+
+    <form v-if="selectedRate" v-on:submit.prevent="convert">
+      <label for="amount"> Euros: </label>
+      <input id="amount" type="number" v-model="amount"/>
+      <input type="submit" value="convert"/>
+
+    </form>
+
+    <div v-if="selectedRate" >
+   <p> Amount: {{this.convertAmount}} </p>
+  </div>
+
+   </div>
+  </body>
+</html>
